@@ -1,7 +1,7 @@
 {
-  "name": "prismarine-template",
+  "name": "minecraft-packets",
   "version": "1.0.0",
-  "description": "A template repository to make it easy to create new prismarine repo",
+  "description": "A module to generate minecraft packets in node.js",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec --exit",
@@ -14,18 +14,23 @@
     "url": "git+https://github.com/PrismarineJS/prismarine-template.git"
   },
   "keywords": [
-    "prismarine",
-    "template"
+    "minecraft",
+    "packets"
   ],
-  "author": "Romain Beaumont",
+  "author": "IceTank",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PrismarineJS/prismarine-template/issues"
+    "url": "https://github.com/IceTank/node-minecraft-packets/issues"
   },
-  "homepage": "https://github.com/PrismarineJS/prismarine-template#readme",
+  "homepage": "https://github.com/IceTank/node-minecraft-packets",
   "devDependencies": {
-    "prismarine-template": "file:.",
-    "standard": "^16.0.1",
-    "mocha": "^9.1.3"
+    "mocha": "^9.1.3",
+    "node-minecraft-packets": "file:.",
+    "standard": "^16.0.1"
+  },
+  "dependencies": {
+    "minecraft-data": "^2.117.1",
+    "mineflayer": "^4.1.0",
+    "smart-buffer": "^4.2.0"
   }
 }
