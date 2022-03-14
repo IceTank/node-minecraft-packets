@@ -35,7 +35,6 @@ const difficulty = {
  * @typedef Packet
  * @property {string} name
  * @property {any} data
- * @property {typeof import('prismarine-item').Item} itemToNotch
  */
 
 /**
@@ -127,13 +126,47 @@ class VersionGenerator extends MineflayerGenerator {
     super(bot)
     const { toNotch: itemToNotch } = require('prismarine-item')(bot.version)
     this.itemToNotch = itemToNotch
+    this._monkeyPatch()
+  }
+
+  _monkeyPatch() {
+    this.bot.recipes = []
+    this.bot._client.on('packet', (data, meta) => {
+      if (data.metadata && data.entityId && this.bot.entities[data.entityId]) {
+        this.bot.entities[data.entityId].rawMetadata = data.metadata
+      }
+      switch (meta.name) {
+        case 'unlock_recipes':
+          switch (data.action) {
+            case 0: //* initialize
+              this.bot.recipes = data.recipes1;
+              break;
+            case 1: //* add
+              this.bot.recipes = [...this.bot.recipes, ...data.recipes1];
+              break;
+            case 2: //* remove
+              this.bot.recipes = Array.from(
+                data.recipes1.reduce((recipes, recipe) => {
+                  recipes.delete(recipe);
+                  return recipes;
+                }, new Set(this.bot.recipes))
+              );
+              break;
+          }
+          break;
+        case 'abilities':
+          this.bot.physicsEnabled = !!((data.flags & 0b10) ^ 0b10);
+          break;
+      }
+    })
+    // this.bot._client.on('packet', this._onServerPacket.bind(this))
   }
 
   /**
    * 
    * @returns {Packet[]}
    */
-  loginSequence() {
+  packetsLoginSequence() {
     const otherPlayers = () => {
       const packets = []
       const players = this.bot.players

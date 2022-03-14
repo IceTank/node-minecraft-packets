@@ -1,4 +1,4 @@
-const supportedVersions = ['1.12']
+const supportedVersions = ['1.12', '1.18']
 
 /**
  * @property {import('mineflayer').Bot} bot
@@ -19,8 +19,16 @@ class MineflayerGenerator {
     this.version = mcData.version.majorVersion
   }
 
-  loginSequence() {
+  packetsLoginSequence() {
     throw notImplementedError(this)
+  }
+
+  _onServerPacket() {
+    throw notImplementedError(this)
+  }
+
+  onClientPacket() {
+
   }
 }
 
