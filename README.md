@@ -23,6 +23,7 @@
 
 ## TODO:
 - Implement login sequence for version 1.8 - 1.17
+- Come up with a better name
 - Move more state information from mineflayer to prismarine-world
   - Entities
   - Declared recipes
