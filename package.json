@@ -29,7 +29,7 @@
     "standard": "^16.0.1"
   },
   "dependencies": {
-    "minecraft-data": "^2.117.1",
+    "minecraft-data": "^3.0.0",
     "mineflayer": "^4.1.0",
     "prismarine-registry": "^1.1.0",
     "smart-buffer": "^4.2.0"
