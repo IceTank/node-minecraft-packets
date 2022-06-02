@@ -1,3 +1,5 @@
+## This repository moved to a new name https://github.com/IceTank/prismarine-packet-generator
+
 # node-minecraft-packets
 
 ## Features
